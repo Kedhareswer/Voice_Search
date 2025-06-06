@@ -14,6 +14,7 @@
 - [Installation](#installation)
 - [Usage](#usage)
 - [Configuration](#configuration)
+- [Enhancement Plan](#enhancement-plan)
 - [Contributing](#contributing)
 - [License](#license)
 
@@ -23,12 +24,22 @@ Voice Search is an innovative application that allows users to perform searches 
 
 ## ✨ Features
 
+### Current Features
 - 🎯 Real-time voice recognition
 - 🔍 Advanced search algorithms
 - 🌐 Multi-language support
 - 📱 Cross-platform compatibility
 - 🔒 Secure voice data handling
 - ⚡ Low latency processing
+
+### Upcoming Features
+- 🔊 Continuous listening mode with trigger word activation
+- 🌍 Multiple search engine integration (Google, Bing, DuckDuckGo)
+- 🧠 Knowledge graph integration for direct answers
+- 🤖 Advanced AI features:
+  - Intent recognition for query classification
+  - Entity extraction for better search results
+  - Sentiment analysis for adaptive UI
 
 ## 🏗 System Architecture
 
@@ -79,7 +90,35 @@ gantt
     Advanced Search Features  :2025-04-01, 60d
     section Phase 3
     AI Integration           :2025-06-01, 90d
+    section Phase 4
+    Continuous Listening     :2025-07-01, 45d
+    Multiple Search Engines  :2025-07-15, 45d
+    section Phase 5
+    Knowledge Graph          :2025-09-01, 60d
+    Advanced NLP Features    :2025-09-15, 75d
 ```
+
+See our detailed [Enhancement Plan](PLAN.md) for more information on upcoming features.
+
+## 🔄 Enhancement Plan
+
+We're actively working on several exciting enhancements to the Voice Search application. For detailed information about our implementation plans, technical approaches, and timelines, please refer to our [Enhancement Plan](PLAN.md) document.
+
+### Key Enhancements in Progress
+
+#### Continuous Listening Mode
+Implementing an always-on listening mode that activates upon detecting a trigger word or phrase, allowing for a truly hands-free experience.
+
+#### Multiple Search Engine Integration
+Enabling searches across Google, Bing, DuckDuckGo, and other providers simultaneously, with results aggregation and comparison.
+
+#### Knowledge Graph Integration
+Connecting to knowledge bases to provide direct answers to queries without requiring a full search, similar to featured snippets.
+
+#### Advanced AI Features
+- **Intent Recognition**: Understanding the type of search (question, navigation, command)
+- **Entity Extraction**: Identifying key entities in voice queries for better search results
+- **Sentiment Analysis**: Detecting user frustration and adapting the interface accordingly
 
 ## ⚙️ Configuration
 
