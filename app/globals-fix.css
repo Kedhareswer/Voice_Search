@@ -1,0 +1,29 @@
+/* Force all elements to be interactive */
+* {
+  pointer-events: auto !important;
+}
+
+/* Ensure inputs are properly styled and interactive */
+input, 
+button,
+[role="button"],
+a {
+  pointer-events: auto !important;
+  cursor: pointer;
+}
+
+/* Fix for any potential overlay issues */
+.overlay,
+[class*="overlay"],
+[style*="position: fixed"],
+[style*="position:fixed"] {
+  pointer-events: none !important;
+}
+
+/* Ensure proper z-index stacking */
+.card,
+.dialog,
+.input-container {
+  z-index: 10;
+  position: relative;
+}

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Input and Microphone Test</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        .container {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            background-color: #f9f9f9;
+        }
+        h1 {
+            color: #333;
+        }
+        input {
+            padding: 10px;
+            width: 100%;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            margin: 10px 0;
+            box-sizing: border-box;
+        }
+        button {
+            padding: 10px 15px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .debug {
+            font-family: monospace;
+            background-color: #f0f0f0;
+            padding: 10px;
+            border-radius: 4px;
+            white-space: pre-wrap;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Input and Microphone Test</h1>
+    
+    <div class="container">
+        <h2>Text Input Test</h2>
+        <p>Type something below to test if basic input functionality works:</p>
+        <input type="text" id="textInput" placeholder="Type here...">
+        <div>
+            <button onclick="clearInput()">Clear</button>
+            <button onclick="showInputValue()">Show Value</button>
+        </div>
+        <div id="inputValue" class="debug"></div>
+    </div>
+
+    <div class="container">
+        <h2>Microphone Test</h2>
+        <p>Click the button below to test microphone permissions:</p>
+        <button onclick="testMicrophone()">Test Microphone</button>
+        <div id="micStatus" class="debug">Status: Not tested</div>
+    </div>
+
+    <div class="container">
+        <h2>Browser Information</h2>
+        <div id="browserInfo" class="debug">Loading...</div>
+    </div>
+
+    <script>
+        // Text input functions
+        function clearInput() {
+            document.getElementById('textInput').value = '';
+            document.getElementById('inputValue').textContent = 'Input cleared';
+        }
+
+        function showInputValue() {
+            const value = document.getElementById('textInput').value;
+            document.getElementById('inputValue').textContent = `Current value: "${value}"`;
+        }
+
+        // Microphone test function
+        async function testMicrophone() {
+            const statusElement = document.getElementById('micStatus');
+            statusElement.textContent = 'Status: Testing...';
+
+            try {
+                const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+                statusElement.textContent = 'Status: SUCCESS! Microphone permission granted.';
+                
+                // Stop all tracks to release the microphone
+                stream.getTracks().forEach(track => track.stop());
+            } catch (error) {
+                statusElement.textContent = `Status: ERROR! ${error.name}: ${error.message}`;
+                console.error('Microphone test failed:', error);
+            }
+        }
+
+        // Display browser information
+        function showBrowserInfo() {
+            const infoElement = document.getElementById('browserInfo');
+            const info = {
+                userAgent: navigator.userAgent,
+                platform: navigator.platform,
+                language: navigator.language,
+                cookiesEnabled: navigator.cookieEnabled,
+                hasMediaDevices: !!navigator.mediaDevices,
+                hasGetUserMedia: !!(navigator.mediaDevices && navigator.mediaDevices.getUserMedia),
+                hasSpeechRecognition: !!(window.SpeechRecognition || window.webkitSpeechRecognition)
+            };
+            
+            infoElement.textContent = JSON.stringify(info, null, 2);
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', showBrowserInfo);
+    </script>
+</body>
+</html>
